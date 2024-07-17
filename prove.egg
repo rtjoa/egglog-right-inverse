@@ -1,3 +1,7 @@
+; This program can be run in the egglog demo:
+; https://egraphs-good.github.io/egglog/
+
+; I is the inverse function; all terms are ground
 (datatype Expr (Mul Expr Expr) (One) (I Expr) (X))
 
 (ruleset id) (ruleset inv) (ruleset assoc1) (ruleset assoc2)
@@ -6,7 +10,7 @@
 (rewrite (Mul (Mul x y) z) (Mul x (Mul y z)) :ruleset assoc1)
 (rewrite (Mul x (Mul y z)) (Mul (Mul x y) z) :ruleset assoc2)
 
-; Hardcoded terms that we know will prove what we want
+; Hardcoded "magic" terms to seed the egraph
 (Mul (I (I (X))) (I (X)))
 (Mul (Mul (I (X)) (X)) (I (X)))
 (Mul (One) (One))
@@ -18,4 +22,3 @@
 
 ; Check that the right inverse is One
 (check (= (Mul (X) (I (X))) (One)))
-(extract (Mul (X) (I (X))))

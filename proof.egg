@@ -1,4 +1,8 @@
-(datatype Expr (X) (One) (I Expr) (Mul Expr Expr)) ; I is the inverse function
+; This program can be run in the egglog demo:
+; https://egraphs-good.github.io/egglog/
+
+; I is the inverse function; all terms are ground
+(datatype Expr (X) (One) (I Expr) (Mul Expr Expr))
 
 ; Left inverse rule
 (union (One) (Mul (I (X)) (X)))
