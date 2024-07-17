@@ -4,13 +4,15 @@
 ; I is the inverse function; all terms are ground
 (datatype Expr (Mul Expr Expr) (One) (I Expr) (X))
 
+; Group axioms; note that rewrites go left-to-right
 (ruleset id) (ruleset inv) (ruleset assoc1) (ruleset assoc2)
 (rewrite (Mul (One) x)     x                 :ruleset id)
 (rewrite (Mul (I x) x)     (One)             :ruleset inv)
 (rewrite (Mul (Mul x y) z) (Mul x (Mul y z)) :ruleset assoc1)
 (rewrite (Mul x (Mul y z)) (Mul (Mul x y) z) :ruleset assoc2)
 
-; Hardcoded "magic" terms to seed the egraph
+; Hardcoded "magic terms" to seed the egraph.
+; I first enumerated many terms, then minimized to get these.
 (Mul (I (I (X))) (I (X)))
 (Mul (Mul (I (X)) (X)) (I (X)))
 (Mul (One) (One))
