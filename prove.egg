@@ -16,5 +16,6 @@
 ; Hardcoded schedule that we know will prove what we want
 (run-schedule inv id assoc1 assoc2 id)
 
+; Check that the right inverse is One
 (check (= (Mul (X) (I (X))) (One)))
 (extract (Mul (X) (I (X))))
