@@ -1,0 +1,22 @@
+(datatype Expr (X) (One) (I Expr) (Mul Expr Expr)) ; I is the inverse function
+
+; Left inverse rule
+(union (One) (Mul (I (X)) (X)))
+(union (One) (Mul (I (I (X))) (I (X))))
+
+; Identity
+(union (Mul (One) (One)) (One))
+(union (Mul (One) (X)) (X))
+(union (Mul (One) (I (X))) (I (X)))
+(union (Mul (One) (Mul (X) (One))) (Mul (X) (One)))
+
+; Association rule
+(union (Mul (Mul (X) (One)) (Mul (I (X)) (X))) (Mul (Mul (Mul (X) (One)) (I (X))) (X)))
+(union (Mul (Mul (One) (X)) (Mul (I (X)) (X))) (Mul (Mul (Mul (One) (X)) (I (X))) (X)))
+(union (Mul (X) (Mul (One) (One))) (Mul (Mul (X) (One)) (One)))
+(union (Mul (I (I (X))) (Mul (One) (I (X)))) (Mul (Mul (I (I (X))) (One)) (I (X))))
+(union (Mul (Mul (I (X)) (X)) (One)) (Mul (I (X)) (Mul (X) (One))))
+(union (Mul (Mul (I (I (X))) (I (X))) (Mul (X) (One))) (Mul (I (I (X))) (Mul (I (X)) (Mul (X) (One)))))
+
+; Check that the right inverse is One
+(check (= (Mul (X) (I (X))) (One)))
